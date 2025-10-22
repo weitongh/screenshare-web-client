@@ -1,0 +1,32 @@
+.user-card {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid transparent
+}
+
+.user-card:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer
+}
+
+.user-name {
+  font-size: 16px
+}
+
+.live-icon {
+  color: #fff;
+  border: none;
+  background: #e53939;
+  padding: 2px 4px;
+  border-radius: 8px;
+  margin-left: auto;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  display: none;
+}

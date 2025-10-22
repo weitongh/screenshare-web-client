@@ -1,0 +1,19 @@
+{
+  "name": "screenshare-web-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "agora-rtc-sdk-ng": "^4.24.0"
+  },
+  "devDependencies": {
+    "vite": "^7.0.4",
+    "wrangler": "^4.24.3"
+  }
+}
