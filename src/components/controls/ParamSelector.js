@@ -36,6 +36,7 @@ function ParamSelector() {
         <option value="h264">H264</option>
         <option value="vp9" selected>VP9</option>
         <option value="vp8">VP8</option>
+        <option value="av1">AV1</option>
       </select>
     </div>
   `);
