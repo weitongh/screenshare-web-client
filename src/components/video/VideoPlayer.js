@@ -1,5 +1,6 @@
 import "./VideoPlayer.css";
 import { onConnected } from "@utils/observer";
+import { joinStream } from "@services/agora";
 
 function VideoPlayer() {
   const connectedCallback = () => {
@@ -17,6 +18,7 @@ function VideoPlayer() {
       document.onvisibilitychange = null;
     };
     
+    window.addEventListener('screensharestart', joinStream);
     window.addEventListener('addlocalvideo', setupEventListeners);
     window.addEventListener('removelocalvideo', removeVideoElement);
     window.addEventListener('removeremotevideo', removeVideoElement);

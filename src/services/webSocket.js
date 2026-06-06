@@ -40,6 +40,9 @@ async function handleMessage(e) {
 function handleSessionConnected(msg) {
   Object.assign(session, msg);
   window.dispatchEvent(new Event('sessionconnected'));
+  const streamer = session.users.find(user => user.isScreenSharing === true);
+  if (!streamer) return;
+  window.dispatchEvent(new Event('screensharestart'));
 };
 
 function handleUserJoined(msg) {
