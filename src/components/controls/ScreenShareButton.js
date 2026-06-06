@@ -1,6 +1,5 @@
 import "./ScreenShareButton.css";
 import { onConnected } from "@utils/observer";
-import { session } from "@stores/session";
 import { startScreenShare, stopScreenShare } from "@services/agora";
 
 function ScreenShareButton() {
@@ -18,7 +17,7 @@ function ScreenShareButton() {
     screenShareBtn.onclick = async () => {
       const screenSharing = screenShareBtn.getAttribute('aria-pressed') === 'true';
       if (!screenSharing) {
-        startScreenShare(session.id);
+        startScreenShare();
       } else {
         stopScreenShare();
       }

@@ -19,6 +19,7 @@ npm install
 VITE_AGORA_APP_ID=<agora-app-id>
 VITE_WS_URL=<websocket-server-url>
 VITE_DEFAULT_ROOM_ID=<default-room-id>
+VITE_CHANNEL=<channel-name>
 ```
 
 ## Usage

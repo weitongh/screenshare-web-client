@@ -34,7 +34,7 @@ function UserCard(user) {
       if (user.id === session.id) return;
       if (!user.isScreenSharing) return;
       if (session.isInStream) await leaveStream();
-      joinStream(user.id);
+      joinStream();
       updateUserCardState();
     };
 

@@ -2,6 +2,7 @@ import { createClient, createScreenVideoTrack } from "agora-rtc-sdk-ng/esm";
 import { session } from "@stores/session";
 
 const appId = import.meta.env.VITE_AGORA_APP_ID;
+const channel = import.meta.env.VITE_CHANNEL;
 const token = null;
 const uid = 0;
 
@@ -14,7 +15,7 @@ function initializeClient() {
   client = createClient({ mode: 'live', codec: `${session.codec}`});
 }
 
-async function joinAsHost(channel) {
+async function joinAsHost() {
   await client.join(appId, channel, token, uid);
   client.setClientRole('host');
   await createLocalTracks();
@@ -22,7 +23,7 @@ async function joinAsHost(channel) {
   displayLocalVideo();
 }
 
-async function joinAsAudience(channel) {
+async function joinAsAudience() {
   await client.join(appId, channel, token, uid);
   const clientRoleOptions = { level: 1 };
   client.setClientRole('audience', clientRoleOptions);
@@ -89,9 +90,9 @@ function setupAudienceEventListeners() {
   });
 }
 
-export async function startScreenShare(channel) {
+export async function startScreenShare() {
   initializeClient();
-  await joinAsHost(channel);
+  await joinAsHost();
   setupHostEventListenders();
 }
 
@@ -108,10 +109,10 @@ export async function stopScreenShare() {
   await client.leave();
 }
 
-export async function joinStream(channel) {
+export async function joinStream() {
   initializeClient();
   setupAudienceEventListeners();
-  await joinAsAudience(channel);
+  await joinAsAudience();
 }
 
 export async function leaveStream() {
