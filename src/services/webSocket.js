@@ -39,7 +39,6 @@ async function handleMessage(e) {
 
 function handleSessionConnected(msg) {
   Object.assign(session, msg);
-  window.dispatchEvent(new Event('sessionconnected'));
   const streamer = session.users.find(user => user.isScreenSharing === true);
   if (!streamer) return;
   window.dispatchEvent(new Event('screensharestart'));
@@ -47,7 +46,6 @@ function handleSessionConnected(msg) {
 
 function handleUserJoined(msg) {
   session.users.push({ id: msg.id });
-  window.dispatchEvent(new Event('userchange'));
 };
 
 function handleScreenShareStarted(msg) {
@@ -71,5 +69,4 @@ function handleUserLeft(msg) {
   if (index !== -1) {
     session.users.splice(index, 1);
   }
-  window.dispatchEvent(new Event('userchange'));
 };

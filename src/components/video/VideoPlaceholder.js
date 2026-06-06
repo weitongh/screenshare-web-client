@@ -23,7 +23,7 @@ function VideoPlaceholder() {
 
   return (`
     <div id="video-placeholder">
-      点击左侧观看正在共享的用户，或点击下方开始你的共享
+      点击下方开始你的共享
     </div>
   `);
 }

@@ -1,6 +1,5 @@
 import "./Room.css";
 import { connectWebsocketServer } from "@services/webSocket";
-import UserPanel from "../components/user/UserPanel";
 import VideoContainer from "../components/video/VideoContainer";
 
 function Room() {
@@ -15,7 +14,6 @@ function Room() {
 
   return (`
     <div class="room">
-      ${UserPanel()}
       ${VideoContainer()}
     </div>
   `);
