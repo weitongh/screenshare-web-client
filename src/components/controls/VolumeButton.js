@@ -1,6 +1,5 @@
 import "./VolumeButton.css";
 import { onConnected } from "@utils/observer";
-import { session } from "@stores/session";
 import { setRemoteAudioVolume, getRemoteAudioTrack } from "@services/agora";
 
 function VolumeButton() {
@@ -76,9 +75,7 @@ function VolumeButton() {
     };
 
     const showVolumeBtn = () => {
-      if (session.isInStream) {
-        volumeCtl.classList.remove('hidden');
-      }        
+      volumeCtl.classList.remove('hidden');
     };
 
     const hideVolumeBtn = () => {

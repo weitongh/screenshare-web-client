@@ -1,12 +1,6 @@
-export const session = {};
-
-const updateSessionState = () => {
-  session.isInStream = true;
+export const session = {
+  // fallback values for when ParamSelector is not rendered on mobile
+  // codec is required by Agora to initialize the client
+  codec: 'vp8',
+  bitrateMax: 2500,
 };
-
-const resetSessionState = () => {
-  session.isInStream = false;
-};
-
-window.addEventListener('addremotevideo', updateSessionState);
-window.addEventListener('removeremotevideo', resetSessionState);
