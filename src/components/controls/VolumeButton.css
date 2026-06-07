@@ -23,6 +23,7 @@
 }
 
 #volume-btn .tooltip.volume-unchanged.on-video-loaded {
+  display: block;
   visibility: visible;
 }
 

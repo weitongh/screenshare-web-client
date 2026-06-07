@@ -3,4 +3,7 @@ export const session = {
   // codec is required by Agora to initialize the client
   codec: 'vp8',
   bitrateMax: 2500,
+  // volume state persists across stream within the same session
+  volume: 1,
+  isMuted: true,
 };
