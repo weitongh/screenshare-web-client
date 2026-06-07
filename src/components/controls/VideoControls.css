@@ -85,6 +85,10 @@
   display: block;
 }
 
+#center-control.hidden {
+  visibility: hidden;
+}
+
 .center-control {
   position: absolute;
   left: 50%;
