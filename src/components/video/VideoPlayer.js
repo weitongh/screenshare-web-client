@@ -14,7 +14,7 @@ function VideoPlayer() {
     };
 
     const removeVideoElement = () => {
-      videoPlayer.firstElementChild?.remove();
+      videoPlayer.querySelector('video')?.remove();
       document.onvisibilitychange = null;
     };
     
@@ -26,9 +26,7 @@ function VideoPlayer() {
 
   onConnected('video-player', connectedCallback);
 
-  return (`
-    <div id="video-player"></div>
-  `);
+  return '<div id="video-player"></div>';
 }
 
 export default VideoPlayer;

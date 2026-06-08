@@ -2,10 +2,19 @@ import "./VideoContainer.css";
 import { onConnected } from "@utils/observer";
 import VideoPlayer from "./VideoPlayer";
 import VideoPlaceholder from "./VideoPlaceholder";
-import VideoControls from "../controls/VideoControls";
+import ScreenShareButton from "../controls/ScreenShareButton";
+import ParamSelector from "../controls/ParamSelector";
+import VolumeButton from "../controls/VolumeButton";
+import PipButton from "../controls/PipButton";
+import FullscreenButton from "../controls/FullscreenButton";
+import IOSPlayButton from "../controls/IOSPlayButton";
 
 function VideoContainer() {
+  const isIOS = /iPhone|iPad/i.test(navigator.userAgent);
+
   const connectedCallback = () => {
+    if (isIOS) return;
+
     const videoContainer = document.getElementById('video-container');
     const videoControls = document.getElementById('video-controls');
     const bottomControls = document.getElementById('bottom-controls');
@@ -63,7 +72,21 @@ function VideoContainer() {
     <div id="video-container">
       ${VideoPlayer()}
       ${VideoPlaceholder()}
-      ${VideoControls()}
+      ${isIOS ? `${IOSPlayButton()}` : `
+        <div id="video-controls">
+          <div id="bottom-controls">
+            <div class="center-control">
+              ${ScreenShareButton()}
+              ${ParamSelector()}
+            </div>
+            <div class="right-control">
+              ${VolumeButton()}
+              ${PipButton()}
+              ${FullscreenButton()}
+            </div>
+          </div>
+        </div>
+      `}
     </div>
   `);
 }
