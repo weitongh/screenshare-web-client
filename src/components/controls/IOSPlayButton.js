@@ -5,23 +5,21 @@ import { getRemoteAudioTrack } from "@services/agora";
 function IOSPlayButton() {
   onConnected('ios-play-btn', () => {
     const playBtn = document.getElementById('ios-play-btn');
-    window.addEventListener('addremotevideo', () => playBtn.classList.remove('hidden'));
-    window.addEventListener('removeremotevideo', () => playBtn.classList.add('hidden'));
 
-    // Browser auto-mutes audio until user interaction
-    // so pause the video on first frame too
-    window.addEventListener('addremotevideo', () => {
-      const video = document.querySelector('video');
-      if (!video) return;
-      video.ontimeupdate = () => {
-        video.ontimeupdate = null;
-        video.pause();
-        getRemoteAudioTrack().getMediaStreamTrack().enabled = false;
-      };
-    });
+    const showPlayBtn = () => {
+      playBtn.classList.remove('hidden')
+    };
+
+    const hidePlayBtn = () => {
+      playBtn.classList.add('hidden')
+    };
 
     const syncVideoAudioState = () => {
       getRemoteAudioTrack().getMediaStreamTrack().enabled = !document.querySelector('video').paused;
+    };
+
+    const pauseAudio = () => {
+      getRemoteAudioTrack().getMediaStreamTrack().enabled = false;
     };
 
     const enterFullscreen = () => {
@@ -30,19 +28,38 @@ function IOSPlayButton() {
 
       video.play();
       video.webkitEnterFullscreen();
+      hidePlayBtn();
 
-      // The native iOS fullscreen controls can pause/resume the video without
-      // triggering any JS event, so poll and mirror the video's paused state
-      // to the audio track until fullscreen exits
+      // Native iOS fullscreen controls can pause or resume the video without
+      // triggering any JS events, so poll and sync the video and audio track
+      // states until fullscreen mode exits
       const poll = setInterval(() => {
-        if (!video.webkitDisplayingFullscreen) {
-          clearInterval(poll);
-          getRemoteAudioTrack().getMediaStreamTrack().enabled = false;
-        } else {
+        if (video.webkitDisplayingFullscreen) {
           syncVideoAudioState();
+        } else {
+          clearInterval(poll);
+          pauseAudio();
+          showPlayBtn();
         }
       }, 300);
     };
+
+    window.addEventListener('addremotevideo', () => {
+      const video = document.querySelector('video');
+      if (!video) return;
+
+      video.ontimeupdate = () => {
+        video.ontimeupdate = null;
+        // Browsers block audio playback until the user interacts with the page,
+        // so start each stream session paused on the first frame for consistency
+        video.pause();
+        pauseAudio();
+      };
+
+      showPlayBtn();
+    });
+
+    window.addEventListener('removeremotevideo', hidePlayBtn);
 
     playBtn.onclick = enterFullscreen;
   });
