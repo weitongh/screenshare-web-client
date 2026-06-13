@@ -33,8 +33,8 @@ function ParamSelector() {
 
       <label for="codec-select">编码:</label>
       <select class="param-select" id="codec-select">
-        <option value="h264">H264</option>
-        <option value="vp9" selected>VP9</option>
+        <option value="h264" selected>H264</option>
+        <option value="vp9">VP9</option>
         <option value="vp8">VP8</option>
         <option value="av1">AV1</option>
       </select>

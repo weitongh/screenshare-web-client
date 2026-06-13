@@ -33,7 +33,7 @@ async function createLocalTracks() {
    const localTracks = await createScreenVideoTrack({
     encoderConfig: {
       bitrateMax: `${session.bitrateMax}`,
-      frameRate: { max: 30 },
+      frameRate: { max: 30, ideal: 30 },
       height: { max: 1080 },
       width: { max: 1920 },
     }
