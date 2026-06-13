@@ -29,7 +29,7 @@ function VideoContainer() {
         if (!hoveringControls) {
           hideTimeout = setTimeout(() => {
             videoControls.classList.add('hidden');
-          }, 2000);
+          }, 3000);
         }
       };
 
@@ -44,7 +44,7 @@ function VideoContainer() {
 
       hideTimeout = setTimeout(() => {
         videoControls.classList.add('hidden');
-      }, 2000);
+      }, 3000);
     };
 
     const removeEventListeners = () => {
