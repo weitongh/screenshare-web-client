@@ -2,11 +2,7 @@ import "./VideoContainer.css";
 import { onConnected } from "@utils/observer";
 import VideoPlayer from "./VideoPlayer";
 import VideoPlaceholder from "./VideoPlaceholder";
-import ScreenShareButton from "../controls/ScreenShareButton";
-import ParamSelector from "../controls/ParamSelector";
-import VolumeButton from "../controls/VolumeButton";
-import PipButton from "../controls/PipButton";
-import FullscreenButton from "../controls/FullscreenButton";
+import VideoControls from "./VideoControls";
 import IOSPlayButton from "../controls/IOSPlayButton";
 
 function VideoContainer() {
@@ -72,21 +68,7 @@ function VideoContainer() {
     <div id="video-container">
       ${VideoPlayer()}
       ${VideoPlaceholder()}
-      ${isIOS ? `${IOSPlayButton()}` : `
-        <div id="video-controls">
-          <div id="bottom-controls">
-            <div class="center-control">
-              ${ScreenShareButton()}
-              ${ParamSelector()}
-            </div>
-            <div class="right-control">
-              ${VolumeButton()}
-              ${PipButton()}
-              ${FullscreenButton()}
-            </div>
-          </div>
-        </div>
-      `}
+      ${isIOS ? `${IOSPlayButton()}` : `${VideoControls()}`}
     </div>
   `);
 }
